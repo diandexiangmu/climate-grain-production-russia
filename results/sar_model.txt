@@ -1,0 +1,35 @@
+REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: MAXIMUM LIKELIHOOD SPATIAL LAG (METHOD = FULL)
+-----------------------------------------------------------------
+Data set            :     unknown
+Weights matrix      :     unknown
+Dependent Variable  :avg_log_production                Number of Observations:          74
+Mean dependent var  :     12.7781                Number of Variables   :           6
+S.D. dependent var  :      2.3537                Degrees of Freedom    :          68
+Pseudo R-squared    :      0.3687
+Spatial Pseudo R-squared:  0.2621
+Log likelihood      :   -152.7214
+Sigma-square ML     :      3.4698                Akaike info criterion :     317.443
+S.E of regression   :      1.8628                Schwarz criterion     :     331.267
+
+------------------------------------------------------------------------------------
+            Variable     Coefficient       Std.Error     z-Statistic     Probability
+------------------------------------------------------------------------------------
+            CONSTANT         9.16887         2.26750         4.04361         0.00005
+            avg_temp         0.20925         0.06384         3.27774         0.00105
+           avg_temp2        -0.00716         0.00645        -1.11066         0.26671
+            avg_rain        -0.20120         0.11589        -1.73613         0.08254
+           avg_rain2         0.00249         0.00180         1.37766         0.16831
+W_avg_log_production         0.45324         0.11982         3.78280         0.00016
+------------------------------------------------------------------------------------
+
+SPATIAL LAG MODEL IMPACTS
+Impacts computed using the 'simple' method.
+            Variable         Direct        Indirect          Total
+            avg_temp         0.2092          0.1735          0.3827
+           avg_temp2        -0.0072         -0.0059         -0.0131
+            avg_rain        -0.2012         -0.1668         -0.3680
+           avg_rain2         0.0025          0.0021          0.0045
+================================ END OF REPORT =====================================

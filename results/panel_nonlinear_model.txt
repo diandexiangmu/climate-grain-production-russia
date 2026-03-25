@@ -1,0 +1,34 @@
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:         log_production   R-squared:                        0.0566
+Estimator:                   PanelOLS   R-squared (Between):              0.0589
+No. Observations:                1291   R-squared (Within):              -0.0598
+Date:                Wed, Mar 25 2026   R-squared (Overall):              0.0583
+Time:                        17:53:10   Log-likelihood                   -391.02
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      17.949
+Entities:                          74   P-value                           0.0000
+Avg Obs:                       17.446   Distribution:                  F(4,1196)
+Min Obs:                       6.0000                                           
+Max Obs:                       18.000   F-statistic (robust):             9.8323
+                                        P-value                           0.0000
+Time periods:                      18   Distribution:                  F(4,1196)
+Avg Obs:                       71.722                                           
+Min Obs:                       69.000                                           
+Max Obs:                       73.000                                           
+                                                                                
+                             Parameter Estimates                              
+==============================================================================
+            Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+------------------------------------------------------------------------------
+temp          -0.0977     0.0282    -3.4697     0.0005     -0.1530     -0.0425
+temp2          0.0088     0.0022     3.9562     0.0001      0.0044      0.0131
+rain           0.0352     0.0072     4.8606     0.0000      0.0210      0.0494
+rain2         -0.0005     0.0001    -4.3471     0.0000     -0.0007     -0.0003
+==============================================================================
+
+F-test for Poolability: 429.89
+P-value: 0.0000
+Distribution: F(90,1196)
+
+Included effects: Entity, Time

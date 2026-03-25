@@ -1,0 +1,41 @@
+REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: ORDINARY LEAST SQUARES
+-----------------------------------------
+Data set            :     unknown
+Weights matrix      :        None
+Dependent Variable  :avg_log_production                Number of Observations:          74
+Mean dependent var  :     12.7781                Number of Variables   :           5
+S.D. dependent var  :      2.3537                Degrees of Freedom    :          69
+R-squared           :      0.2585
+Adjusted R-squared  :      0.2155
+Sum squared residual:     299.861                F-statistic           :      6.0144
+Sigma-square        :       4.346                Prob(F-statistic)     :   0.0003272
+S.E. of regression  :       2.085                Log likelihood        :    -156.774
+Sigma-square ML     :       4.052                Akaike info criterion :     323.548
+S.E of regression ML:      2.0130                Schwarz criterion     :     335.068
+
+------------------------------------------------------------------------------------
+            Variable     Coefficient       Std.Error     t-Statistic     Probability
+------------------------------------------------------------------------------------
+            CONSTANT        16.16533         1.85289         8.72437         0.00000
+            avg_temp         0.27066         0.06795         3.98303         0.00017
+           avg_temp2        -0.00856         0.00721        -1.18623         0.23960
+            avg_rain        -0.29165         0.12923        -2.25685         0.02719
+           avg_rain2         0.00373         0.00201         1.85043         0.06853
+------------------------------------------------------------------------------------
+
+REGRESSION DIAGNOSTICS
+MULTICOLLINEARITY CONDITION NUMBER          30.032
+
+TEST ON NORMALITY OF ERRORS
+TEST                             DF        VALUE           PROB
+Jarque-Bera                       2         38.027           0.0000
+
+DIAGNOSTICS FOR HETEROSKEDASTICITY
+RANDOM COEFFICIENTS
+TEST                             DF        VALUE           PROB
+Breusch-Pagan test                4          6.915           0.1405
+Koenker-Bassett test              4          3.112           0.5393
+================================ END OF REPORT =====================================
