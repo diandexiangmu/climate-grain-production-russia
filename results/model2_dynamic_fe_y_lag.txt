@@ -1,0 +1,35 @@
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:          ln_production   R-squared:                        0.2616
+Estimator:                   PanelOLS   R-squared (Between):              0.5725
+No. Observations:                1099   R-squared (Within):               0.3460
+Date:                Fri, Apr 03 2026   R-squared (Overall):              0.5724
+Time:                        18:12:44   Log-likelihood                   -79.305
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      71.415
+Entities:                          71   P-value                           0.0000
+Avg Obs:                       15.479   Distribution:                  F(5,1008)
+Min Obs:                       4.0000                                           
+Max Obs:                       16.000   F-statistic (robust):             32.720
+                                        P-value                           0.0000
+Time periods:                      16   Distribution:                  F(5,1008)
+Avg Obs:                       68.688                                           
+Min Obs:                       65.000                                           
+Max Obs:                       71.000                                           
+                                                                                
+                                 Parameter Estimates                                  
+======================================================================================
+                    Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+--------------------------------------------------------------------------------------
+ln_production_lag1     0.4241     0.0479     8.8601     0.0000      0.3302      0.5181
+temp_grow_mean        -0.1166     0.0144    -8.0743     0.0000     -0.1450     -0.0883
+prec_grow_sum       3.255e-06  6.074e-06     0.5359     0.5922  -8.664e-06   1.517e-05
+temp_grow_lag1         0.0456     0.0171     2.6739     0.0076      0.0121      0.0791
+prec_grow_lag1     -3.151e-06  6.121e-06    -0.5148     0.6068  -1.516e-05    8.86e-06
+======================================================================================
+
+F-test for Poolability: 9.5913
+P-value: 0.0000
+Distribution: F(85,1008)
+
+Included effects: Entity, Time

@@ -1,0 +1,33 @@
+REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: MAXIMUM LIKELIHOOD SPATIAL LAG (METHOD = FULL)
+------------------------------------------------------------------------------------
+Data set            :     unknown
+Weights matrix      :queen_weights
+Dependent Variable  :ln_production                Number of Observations:          65
+Mean dependent var  :     13.4132                Number of Variables   :           5
+S.D. dependent var  :      1.9319                Degrees of Freedom    :          60
+Pseudo R-squared    :      0.9603
+Spatial Pseudo R-squared:  0.9609
+Log likelihood      :    -29.6926
+Sigma-square ML     :      0.1460                Akaike info criterion :      69.385
+S.E of regression   :      0.3821                Schwarz criterion     :      80.257
+
+------------------------------------------------------------------------------------
+            Variable     Coefficient       Std.Error     z-Statistic     Probability
+------------------------------------------------------------------------------------
+            CONSTANT         6.20669         0.34080        18.21233         0.00000
+      temp_grow_mean         0.08974         0.01797         4.99316         0.00000
+       prec_grow_sum         0.00009         0.00002         3.95562         0.00008
+             ln_area         1.02376         0.03906        26.20995         0.00000
+     W_ln_production        -0.01541         0.02129        -0.72392         0.46911
+------------------------------------------------------------------------------------
+
+SPATIAL LAG MODEL IMPACTS
+Impacts computed using the 'simple' method.
+            Variable         Direct        Indirect          Total
+      temp_grow_mean         0.0897         -0.0014          0.0884
+       prec_grow_sum         0.0001         -0.0000          0.0001
+             ln_area         1.0238         -0.0155          1.0082
+================================ END OF REPORT =====================================
