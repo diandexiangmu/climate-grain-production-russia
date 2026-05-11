@@ -1,0 +1,8 @@
+{
+  "BASE_DIR": "/Users/littlestars/Desktop/grain_project",
+  "PANEL_PATH": "/Users/littlestars/Desktop/grain_project/data/final/final_panel_yield_spi_spei_subsidy.csv",
+  "GADM_SHP_PATH": "/Users/littlestars/Desktop/grain_project/data/large_files/gadm41_RUS_shp/gadm41_RUS_1.shp",
+  "OUTPUT_ROOT": "/Users/littlestars/Desktop/grain_project/thesis_outputs",
+  "RF_N_ESTIMATORS": 500,
+  "SHAP_MAX_ROWS": 250
+}

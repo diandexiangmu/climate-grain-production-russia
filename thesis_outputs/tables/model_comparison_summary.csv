@@ -1,0 +1,9 @@
+﻿Model,Purpose,N,R2_within,R2_between,R2_overall,RMSE,MAE,CV_R2_mean,CV_R2_std,Main finding
+FE_baseline,Average climate relationship,521,0.13893423605258515,-13.085958533979706,-8.76202287026529,,,,,
+FE_nonlinear,Nonlinear climate response,521,-0.18871457879005926,-10.601683420580938,-7.089852449152309,,,,,"Tests quadratic terms of temperature, SPI and SPEI"
+FE_post2014_interactions,Change in climate sensitivity after 2014,521,0.13893423605258515,-13.085958533979706,-8.76202287026529,,,,,Post-2014 climate interaction specification
+SAR_style,Spatial correlation in production,490,0.2575597418886949,-1.7286622240205927,-0.913144556490485,,,,,Spatial lag of production included
+SDM_style,Spatial Durbin robustness check,490,0.4828037925310503,-2.255910848672177,-1.245478855148085,,,,,Spatial lag of production and spatially lagged covariates included
+Panel_ARDL_style,Dynamic lagged climate relationships,364,-0.05186614058447492,-2.1823474583830293,-1.7884578982801802,,,,,Lagged climate variables included
+RF_with_lag,Prediction,124,,,0.5332317353188787,0.27321466773681435,0.19285468886943405,0.7138002337420074,0.0892019685543698,Lagged production dominates
+RF_without_lag,Prediction without historical production,124,,,-0.10001254358390588,0.4194229295533117,0.31230244501202514,0.2608287181647453,0.24675828415604437,Climate variables become central predictors

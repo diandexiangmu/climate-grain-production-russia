@@ -1,0 +1,2 @@
+﻿Model,Purpose,N,R2_within,R2_between,R2_overall,RMSE,MAE,CV_R2_mean,CV_R2_std,Main finding
+RF_with_lag,Prediction,124,,,0.5332317353188787,0.27321466773681435,0.19285468886943405,0.7138002337420074,0.0892019685543698,Lagged production dominates

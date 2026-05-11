@@ -1,0 +1,100 @@
+                         QuantReg Regression Results                          
+==============================================================================
+Dep. Variable:               ln_yield   Pseudo R-squared:               0.7470
+Model:                       QuantReg   Bandwidth:                     0.06939
+Method:                 Least Squares   Sparsity:                       0.2418
+Date:                Sun, 10 May 2026   No. Observations:                  490
+Time:                        15:45:38   Df Residuals:                      406
+                                        Df Model:                           83
+========================================================================================================
+                                           coef    std err          t      P>|t|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                               10.7057      0.915     11.702      0.000       8.907      12.504
+C(region_match)[T.Altay]                -2.2978      0.305     -7.524      0.000      -2.898      -1.697
+C(region_match)[T.Amur]                 -1.6981      0.275     -6.176      0.000      -2.239      -1.158
+C(region_match)[T.Arkhangel'sk]         -2.7530      0.557     -4.946      0.000      -3.847      -1.659
+C(region_match)[T.Astrakhan']            0.1835      0.243      0.756      0.450      -0.294       0.661
+C(region_match)[T.Bashkortostan]        -1.7608      0.222     -7.936      0.000      -2.197      -1.325
+C(region_match)[T.Belgorod]             -0.4074      0.112     -3.629      0.000      -0.628      -0.187
+C(region_match)[T.Bryansk]              -0.6685      0.125     -5.349      0.000      -0.914      -0.423
+C(region_match)[T.Buryat]               -2.6334      0.415     -6.346      0.000      -3.449      -1.818
+C(region_match)[T.Chechnya]             -0.6484      0.068     -9.584      0.000      -0.781      -0.515
+C(region_match)[T.Chelyabinsk]          -2.0876      0.213     -9.807      0.000      -2.506      -1.669
+C(region_match)[T.Dagestan]             -0.8844      0.077    -11.531      0.000      -1.035      -0.734
+C(region_match)[T.Ingush]               -0.7002      0.109     -6.408      0.000      -0.915      -0.485
+C(region_match)[T.Irkutsk]              -2.3043      0.361     -6.378      0.000      -3.015      -1.594
+C(region_match)[T.Ivanovo]              -1.6292      0.168     -9.712      0.000      -1.959      -1.299
+C(region_match)[T.Kabardin-Balkar]      -0.5002      0.214     -2.339      0.020      -0.921      -0.080
+C(region_match)[T.Kalmyk]               -0.1263      0.188     -0.670      0.503      -0.497       0.244
+C(region_match)[T.Kaluga]               -1.3359      0.144     -9.306      0.000      -1.618      -1.054
+C(region_match)[T.Karachay-Cherkess]    -0.7920      0.300     -2.640      0.009      -1.382      -0.202
+C(region_match)[T.Khabarovsk]           -2.3400      0.402     -5.814      0.000      -3.131      -1.549
+C(region_match)[T.Khakass]              -2.1444      0.323     -6.646      0.000      -2.779      -1.510
+C(region_match)[T.Kirov]                -1.9043      0.235     -8.102      0.000      -2.366      -1.442
+C(region_match)[T.Komi]                 -2.2412      0.599     -3.741      0.000      -3.419      -1.063
+C(region_match)[T.Kostroma]             -1.8819      0.212     -8.885      0.000      -2.298      -1.466
+C(region_match)[T.Krasnodar]             0.2976      0.171      1.744      0.082      -0.038       0.633
+C(region_match)[T.Krasnoyarsk]          -2.5529      0.613     -4.162      0.000      -3.759      -1.347
+C(region_match)[T.Kurgan]               -1.8668      0.195     -9.565      0.000      -2.250      -1.483
+C(region_match)[T.Kursk]                -0.5104      0.139     -3.674      0.000      -0.784      -0.237
+C(region_match)[T.Leningrad]            -1.2665      0.226     -5.593      0.000      -1.712      -0.821
+C(region_match)[T.Lipetsk]              -0.6625      0.132     -5.011      0.000      -0.922      -0.403
+C(region_match)[T.Mariy-El]             -1.6376      0.162    -10.095      0.000      -1.956      -1.319
+C(region_match)[T.Mordovia]             -1.1911      0.147     -8.107      0.000      -1.480      -0.902
+C(region_match)[T.Moskva]               -1.2092      0.147     -8.210      0.000      -1.499      -0.920
+C(region_match)[T.Novgorod]             -1.3659      0.219     -6.246      0.000      -1.796      -0.936
+C(region_match)[T.Novosibirsk]          -1.9956      0.242     -8.236      0.000      -2.472      -1.519
+C(region_match)[T.Omsk]                 -2.1165      0.252     -8.392      0.000      -2.612      -1.621
+C(region_match)[T.Orenburg]             -1.8102      0.183     -9.902      0.000      -2.170      -1.451
+C(region_match)[T.Penza]                -1.0830      0.149     -7.254      0.000      -1.377      -0.790
+C(region_match)[T.Perm']                -2.2254      0.272     -8.196      0.000      -2.759      -1.692
+C(region_match)[T.Primor'ye]            -0.9074      0.193     -4.691      0.000      -1.288      -0.527
+C(region_match)[T.Pskov]                -1.2579      0.177     -7.125      0.000      -1.605      -0.911
+C(region_match)[T.Rostov]               -0.1513      0.199     -0.759      0.448      -0.543       0.240
+C(region_match)[T.Ryazan']              -1.0079      0.144     -6.994      0.000      -1.291      -0.725
+C(region_match)[T.Sakha]                -3.2208      0.553     -5.827      0.000      -4.307      -2.134
+C(region_match)[T.Samara]               -1.2884      0.149     -8.628      0.000      -1.582      -0.995
+C(region_match)[T.Saratov]              -1.0860      0.165     -6.569      0.000      -1.411      -0.761
+C(region_match)[T.Smolensk]             -1.5330      0.156     -9.821      0.000      -1.840      -1.226
+C(region_match)[T.Stavropol']            0.0700      0.192      0.365      0.716      -0.307       0.447
+C(region_match)[T.Sverdlovsk]           -1.8553      0.240     -7.719      0.000      -2.328      -1.383
+C(region_match)[T.Tambov]               -0.8074      0.142     -5.703      0.000      -1.086      -0.529
+C(region_match)[T.Tatarstan]            -1.2943      0.197     -6.581      0.000      -1.681      -0.908
+C(region_match)[T.Tomsk]                -1.9591      0.270     -7.264      0.000      -2.489      -1.429
+C(region_match)[T.Tula]                 -1.0193      0.157     -6.507      0.000      -1.327      -0.711
+C(region_match)[T.Tuva]                 -2.7177      0.423     -6.419      0.000      -3.550      -1.885
+C(region_match)[T.Tver']                -1.7295      0.183     -9.452      0.000      -2.089      -1.370
+C(region_match)[T.Tyumen']              -1.8583      0.238     -7.809      0.000      -2.326      -1.390
+C(region_match)[T.Udmurt]               -1.8468      0.201     -9.181      0.000      -2.242      -1.451
+C(region_match)[T.Ul'yanovsk]           -1.2829      0.140     -9.132      0.000      -1.559      -1.007
+C(region_match)[T.Vladimir]             -1.3766      0.145     -9.523      0.000      -1.661      -1.092
+C(region_match)[T.Volgograd]            -0.7031      0.172     -4.079      0.000      -1.042      -0.364
+C(region_match)[T.Vologda]              -1.9568      0.243     -8.043      0.000      -2.435      -1.479
+C(region_match)[T.Voronezh]             -0.6893      0.144     -4.794      0.000      -0.972      -0.407
+C(region_match)[T.Yaroslavl']           -1.6284      0.192     -8.476      0.000      -2.006      -1.251
+C(region_match)[T.Zabaykal'ye]          -2.6125      0.336     -7.770      0.000      -3.273      -1.952
+C(year)[T.2017]                         -0.0208      0.028     -0.746      0.456      -0.076       0.034
+C(year)[T.2018]                         -0.0110      0.024     -0.452      0.652      -0.059       0.037
+C(year)[T.2019]                         -0.0339      0.026     -1.290      0.198      -0.086       0.018
+C(year)[T.2020]                          0.0954      0.023      4.151      0.000       0.050       0.141
+C(year)[T.2021]                          0.0404      0.023      1.768      0.078      -0.005       0.085
+C(year)[T.2022]                          0.1780      0.026      6.793      0.000       0.127       0.230
+C(year)[T.2023]                         -0.5154      0.106     -4.840      0.000      -0.725      -0.306
+temp_grow_mean                           0.0259      0.064      0.403      0.688      -0.101       0.152
+prec_grow_sum                           -0.0010      0.000     -5.759      0.000      -0.001      -0.001
+spi_grow_mean                           -0.1614      0.093     -1.736      0.083      -0.344       0.021
+spei_grow_mean                          -0.0265      0.050     -0.535      0.593      -0.124       0.071
+ln_subsidy_main                         -0.0114      0.018     -0.636      0.525      -0.047       0.024
+ln_subsidy_per_area                     -0.0196      0.018     -1.098      0.273      -0.055       0.015
+ln_area                                  0.0082      0.035      0.232      0.817      -0.061       0.078
+ln_yield_lag1                            0.0620      0.026      2.417      0.016       0.012       0.112
+temp_grow_sq                            -0.0071      0.002     -4.611      0.000      -0.010      -0.004
+spi_sq                                  -0.0237      0.016     -1.479      0.140      -0.055       0.008
+spei_sq                                 -0.0066      0.003     -1.893      0.059      -0.013       0.000
+temp_x_subsidy                           0.0004      0.000      1.394      0.164      -0.000       0.001
+spi_x_subsidy                            0.0145      0.004      3.765      0.000       0.007       0.022
+spei_x_subsidy                          -0.0020      0.002     -1.265      0.207      -0.005       0.001
+========================================================================================================
+
+The smallest eigenvalue is 2.91e-11. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.

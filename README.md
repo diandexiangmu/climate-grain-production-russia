@@ -16,6 +16,9 @@ The analysis combines panel data econometrics and spatial econometric methods to
 - **ERA5 Climate Data**  
   Temperature and precipitation
 
+- **Agricultural Subsidy Tables**  
+  Subsidy spreadsheets stored in `data/subsidy_raw/`
+
 - **OpenStreetMap (Nominatim)**  
   Regional coordinates (administrative centers)
 
@@ -68,6 +71,7 @@ The analysis is conducted in several steps:
 grain_project/
 ├── data/
 │ ├── raw/ # original data 
+│ ├── subsidy_raw/ # agricultural subsidy spreadsheets
 │ └── processed/ # cleaned datasets
 ├── notebooks/
 │ ├── main.ipynb # main reproducible analysis
@@ -105,4 +109,3 @@ pip install -r requirements.txt
 Ji Yiman  
 Graduate Student in Mathematics & AI  
 Saint Petersburg State University
-

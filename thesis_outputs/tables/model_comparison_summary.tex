@@ -1,0 +1,18 @@
+\begin{table}
+\caption{Model comparison summary}
+\label{tab:model_comparison}
+\begin{tabular}{llrrrrrrrrl}
+\toprule
+Model & Purpose & N & R2_within & R2_between & R2_overall & RMSE & MAE & CV_R2_mean & CV_R2_std & Main finding \\
+\midrule
+FE_baseline & Average climate relationship & 521 & 0.138900 & -13.086000 & -8.762000 & NaN & NaN & NaN & NaN &  \\
+FE_nonlinear & Nonlinear climate response & 521 & -0.188700 & -10.601700 & -7.089900 & NaN & NaN & NaN & NaN & Tests quadratic terms of temperature, SPI and SPEI \\
+FE_post2014_interactions & Change in climate sensitivity after 2014 & 521 & 0.138900 & -13.086000 & -8.762000 & NaN & NaN & NaN & NaN & Post-2014 climate interaction specification \\
+SAR_style & Spatial correlation in production & 490 & 0.257600 & -1.728700 & -0.913100 & NaN & NaN & NaN & NaN & Spatial lag of production included \\
+SDM_style & Spatial Durbin robustness check & 490 & 0.482800 & -2.255900 & -1.245500 & NaN & NaN & NaN & NaN & Spatial lag of production and spatially lagged covariates included \\
+Panel_ARDL_style & Dynamic lagged climate relationships & 364 & -0.051900 & -2.182300 & -1.788500 & NaN & NaN & NaN & NaN & Lagged climate variables included \\
+RF_with_lag & Prediction & 124 & NaN & NaN & 0.533200 & 0.273200 & 0.192900 & 0.713800 & 0.089200 & Lagged production dominates \\
+RF_without_lag & Prediction without historical production & 124 & NaN & NaN & -0.100000 & 0.419400 & 0.312300 & 0.260800 & 0.246800 & Climate variables become central predictors \\
+\bottomrule
+\end{tabular}
+\end{table}

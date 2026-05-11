@@ -1,0 +1,30 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Problem Statement}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}General Objective}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Scientific Novelty}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Research Tasks}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Object and Subject of the Study}{6}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Research Hypotheses}{6}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Materials and Methods}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Data Sources and Sample Construction}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Data Preprocessing}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Construction of SPI and SPEI}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Variable Definitions}{9}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Econometric and Machine-Learning Models}{9}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Baseline Two-Way Fixed Effects Model}{9}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Nonlinear Fixed Effects Model}{10}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}Post-2014 Interaction Specification}{10}{subsubsection.3.5.3}%
+\contentsline {subsubsection}{\numberline {3.5.4}Quantile Regression}{10}{subsubsection.3.5.4}%
+\contentsline {subsubsection}{\numberline {3.5.5}Spatial Panel Models}{10}{subsubsection.3.5.5}%
+\contentsline {subsubsection}{\numberline {3.5.6}Panel ARDL-Style Model}{11}{subsubsection.3.5.6}%
+\contentsline {subsubsection}{\numberline {3.5.7}Random Forest and SHAP}{11}{subsubsection.3.5.7}%
+\contentsline {section}{\numberline {4}Results and Discussion}{11}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Panel Data Characteristics and Spatial Distribution}{11}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Baseline Fixed Effects Results}{14}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Nonlinear Climate Relationships}{15}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Quantile Regression Results}{17}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Spatial Panel Model Results}{19}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Dynamic Lag Effects}{19}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Random Forest Feature Importance and SHAP Interpretation}{20}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}Model Comparison}{23}{subsection.4.8}%
+\contentsline {section}{\numberline {5}Conclusion}{24}{section.5}%

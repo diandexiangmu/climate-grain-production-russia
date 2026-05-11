@@ -3,6 +3,7 @@
 *.zip
 *.xls
 *.xlsx
+!data/subsidy_raw/*.xlsx
 
 # macOS
 .DS_Store

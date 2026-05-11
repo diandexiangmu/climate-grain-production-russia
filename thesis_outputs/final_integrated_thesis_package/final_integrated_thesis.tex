@@ -1,0 +1,918 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{Liberation Serif}}
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2cm
+]{geometry}
+
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{threeparttable}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{url}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue
+}
+
+\graphicspath{{figures/}}
+
+\title{\textbf{Analysis of the Impact of Climatic Variables on Grain Production in Russian Regions}}
+\author{Yiman Ji\\Saint Petersburg State University}
+\date{April 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This master's thesis examines the empirical relationship between climatic conditions and grain production in Russian regions. The study uses region--year panel data covering the period from 2007 to 2023 and integrates several complementary methods, including two-way fixed effects models, nonlinear fixed effects models, quantile regression, spatial panel models, Panel ARDL-style specifications, random forest models, cross-validation, and SHAP-based model interpretation.
+
+The results show that the relationship between climate variables and Russian grain production is not adequately captured by a simple static linear model. Growing-season temperature is negatively associated with grain production in the baseline fixed effects and dynamic specifications, while nonlinear models show significant concave relationships for temperature, SPI, and SPEI. Quantile regression indicates that climate sensitivity differs across different positions of the conditional production distribution. Spatial panel models reveal strong spatial co-movement in grain production among neighboring Russian regions. Machine-learning results show that lagged production dominates prediction when it is included, while growing-season temperature, precipitation, sown area, black-soil zone membership, and subsidy variables become more important when historical production is excluded.
+
+The findings suggest that Russian grain production is shaped by nonlinear climate responses, spatial correlation, dynamic lagged associations, and regional agro-ecological heterogeneity. The results should be interpreted as empirical associations rather than strict causal effects, especially for subsidy variables, post-2014 policy interactions, and machine-learning feature importance.
+
+\textbf{Keywords:} Russia; grain production; climate fluctuation; SPI; SPEI; fixed effects; quantile regression; spatial panel model; random forest; SHAP.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+Climate fluctuation is one of the major factors affecting agricultural production. Changes in temperature, precipitation, drought intensity, and water balance influence crop growth cycles, soil moisture, sowing and harvesting conditions, pest and disease risks, and the effectiveness of agricultural inputs. For countries with large territories and strong regional heterogeneity, the impact of climate on agricultural production is unlikely to be uniform. Instead, it may differ across regions, years, agro-ecological zones, and production levels.
+
+Russia is one of the world's major grain-producing countries. Its agricultural production covers several climatic and agro-ecological zones, including the black-soil regions, the Volga dry zone, risky farming regions, southern agricultural areas, Siberian regions, and parts of the Far East. These regions differ substantially in heat supply, precipitation, soil fertility, production infrastructure, market access, and exposure to climate risks. Therefore, studying the relationship between climatic variables and regional grain production in Russia is important both academically and practically.
+
+Existing empirical studies often examine the relationship between climate variables and agricultural output using linear mean-regression models, especially fixed effects models. Such models are useful for estimating average empirical relationships, but they may be insufficient for capturing several key features of the climate--agriculture relationship. First, agricultural output often exhibits temporal persistence because current production is affected by previous production capacity, land-use patterns, technology, and regional production organization. Second, the relationship between climate variables and agricultural output is not necessarily linear. Moderate warming or moisture improvement may be beneficial in some regions, while excessive heat, drought, or wetness may reduce output. Third, the climate response may differ across the output distribution. Fourth, agricultural production may exhibit spatial correlation because neighboring regions often share similar climate conditions, soils, transport networks, markets, and policy environments.
+
+Based on this background, this thesis systematically studies the relationship between climatic conditions and grain production in Russian regions. The purpose is not to claim strict causal identification, but to provide a multidimensional empirical characterization of the climate--grain production relationship in Russia. The analysis combines fixed effects estimation, nonlinear terms, quantile regression, spatial panel models, dynamic lag specifications, and machine-learning interpretation.
+
+The thesis addresses the following research questions. First, is there a stable empirical relationship between regional grain production in Russia and growing-season climatic variables, including temperature, precipitation, SPI, and SPEI? Second, is the relationship between climate variables and grain production nonlinear? Third, does climate sensitivity differ across different positions of the production distribution? Fourth, does grain production exhibit spatial correlation across neighboring Russian regions? Fifth, do climatic variables show lagged associations with grain production? Sixth, from a predictive perspective, which variables contribute most to explaining regional grain production: climate variables, historical production, subsidies, sown area, or agro-ecological zone characteristics?
+
+The contribution of this thesis lies in constructing a unified empirical framework that combines econometric, spatial, dynamic, and machine-learning methods. Compared with a static linear mean-effect model, this framework provides a more complete description of the climate--grain production relationship in Russian regions.
+
+\section{Problem Statement}
+
+\subsection{General Objective}
+
+The general objective of this thesis is to construct and empirically test a multidimensional analytical framework for evaluating the relationship between climatic factors and grain production in Russian regions. The study focuses on region--year panel data and integrates heterogeneous data sources, including grain production, grain crop sown area, climatic variables, drought and water-balance indices, agricultural subsidies, agro-ecological zone classifications, and spatial adjacency information.
+
+The central methodological idea is that the climate--grain production relationship should not be reduced to a single linear average effect. In a country such as Russia, where agricultural regions differ considerably in natural conditions, production scale, infrastructure, and exposure to climate risks, the same climate variable may be associated with different production outcomes across regions, years, and output levels. Therefore, this thesis evaluates the relationship from several complementary perspectives: average association, nonlinear response, distributional heterogeneity, spatial correlation, dynamic lagged association, and predictive importance.
+
+\subsection{Scientific Novelty}
+
+The novelty of this thesis is that it combines statistical, econometric, spatial, dynamic, and machine-learning methods within a unified empirical framework for analyzing Russian regional grain production. Previous studies often focus mainly on average climate effects or national-level relationships. In contrast, this thesis uses region--year panel data and examines several additional dimensions of the climate--production relationship.
+
+First, the thesis introduces nonlinear specifications to test whether temperature and moisture variables have diminishing marginal or concave relationships with grain production. Second, it uses quantile regression to examine whether climate sensitivity differs across lower, median, and upper positions of the production distribution. Third, it incorporates spatial panel models in order to test whether Russian regional grain production exhibits spatial dependence. Fourth, it introduces Panel ARDL-style specifications to examine whether climatic variables are associated with grain production not only contemporaneously but also with lags. Fifth, it uses random forest models and SHAP interpretation to evaluate the predictive importance and direction of influence of climate, policy, and regional variables.
+
+Thus, the scientific novelty is not the use of one isolated method, but the construction of a unified empirical design that characterizes the climate--grain production relationship as nonlinear, heterogeneous, spatially correlated, dynamically lagged, and predictable from both historical and climatic information.
+
+\subsection{Research Tasks}
+
+To achieve the general objective, the thesis solves the following tasks:
+
+\begin{enumerate}
+    \item to review the existing literature on climate change, agricultural production, drought indicators, spatial dependence, and machine-learning methods in agricultural economics;
+    \item to construct a region--year panel dataset for Russian regions by combining grain production, grain crop sown area, climatic variables, subsidies, agro-ecological zone indicators, lagged variables, and spatial adjacency information;
+    \item to process ERA5-Land climate data and construct regional climate indicators using polygon-based regional averages rather than administrative-center point values;
+    \item to calculate SPI and SPEI and aggregate them to the growing-season level;
+    \item to estimate the average relationship between climatic variables and grain production using two-way fixed effects models;
+    \item to test whether the relationship between climate variables and grain production is nonlinear by introducing quadratic terms for temperature, SPI, and SPEI;
+    \item to analyze whether climate sensitivity differs across the conditional production distribution using quantile regression;
+    \item to examine whether Russian regional grain production exhibits spatial correlation using SAR-style and SDM-style specifications;
+    \item to evaluate lagged relationships between climatic variables and grain production using Panel ARDL-style models;
+    \item to assess the predictive importance of climatic, historical, policy, and agro-ecological variables using random forest models and SHAP interpretation;
+    \item to compare the explanatory and predictive performance of different model classes;
+    \item to formulate conclusions that directly answer the research questions.
+\end{enumerate}
+
+\subsection{Object and Subject of the Study}
+
+The object of the study is regional grain production in the Russian Federation. The subject of the study is the empirical relationship between climatic variables and regional grain production, including average associations, nonlinear responses, distributional heterogeneity, spatial correlation, dynamic lagged relationships, and predictive importance.
+
+\subsection{Research Hypotheses}
+
+The thesis is based on the following hypotheses:
+
+\begin{description}
+    \item[H1.] Growing-season climatic variables are significantly associated with regional grain production in Russia.
+    \item[H2.] The relationship between climatic variables and grain production is nonlinear.
+    \item[H3.] Climate sensitivity differs across different positions of the grain production distribution.
+    \item[H4.] Regional grain production in Russia exhibits significant spatial correlation.
+    \item[H5.] Climatic variables have lagged associations with grain production.
+    \item[H6.] Historical production and growing-season climate variables are among the most important predictors of current grain production.
+\end{description}
+
+\section{Materials and Methods}
+
+\subsection{Data Sources and Sample Construction}
+
+This thesis uses panel data at the Russian region--year level. The main sample period is 2007--2023. The main data categories include grain production, grain crop sown area, agricultural subsidies, agro-ecological zone indicators, regional climate variables, drought indices, and spatial adjacency information.
+
+Grain production data refer to annual grain output in each Russian region and serve as the dependent variable. Grain crop sown area is used as a control variable capturing the production scale of each region. Subsidy variables are included to account for regional policy support, but they are interpreted cautiously because subsidy allocation may respond to regional production conditions, disasters, and policy priorities.
+
+Climate variables are reconstructed from ERA5-Land monthly reanalysis data. This thesis does not rely on administrative-center climate values, because climate conditions near a regional capital may not represent the climate exposure of agricultural land across the whole region. Instead, regional climate variables are obtained using a polygon-average method. Russian first-level administrative boundaries are used as regional polygon data. ERA5-Land grid cells are matched with regional polygons, and monthly temperature and precipitation values are averaged within each region. Region--month data are then aggregated to the region--year level.
+
+The data construction procedure is summarized in Figure~\ref{fig:workflow}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{fig1_climate_data_workflow.png}
+\caption{Construction of climate variables and assembly of the panel dataset}
+\label{fig:workflow}
+\end{figure}
+
+The original ERA5-Land two-meter temperature variable is measured in Kelvin. It is converted into degrees Celsius as follows:
+\[
+Temp_{it}=Temp^{K}_{it}-273.15.
+\]
+Precipitation is converted into millimeters and aggregated to monthly cumulative precipitation according to the actual number of days in each month. This is necessary to avoid incorrectly treating monthly average precipitation as monthly total precipitation.
+
+The growing season is defined as April to September. The main growing-season climate variables include growing-season average temperature, growing-season cumulative precipitation, growing-season average SPI, and growing-season average SPEI. Winter precipitation is defined as precipitation from November--December of the previous year plus January--March of the current year.
+
+The final dataset is obtained by merging production data, sown area, subsidies, climate variables, drought indices, agro-ecological zones, and spatial information using the region--year key. Data cleaning includes standardizing region names, removing national and federal district aggregates, checking year identifiers, excluding non-positive production and area values, removing observations with missing core variables, and constructing logarithmic, lagged, quadratic, and interaction variables.
+
+\subsection{Data Preprocessing}
+
+The preprocessing procedure consists of several steps. First, region names are standardized across statistical data, administrative boundary files, and climate datasets. Second, observations corresponding to national totals, federal district aggregates, or non-regional administrative summaries are removed. Third, observations with non-positive grain production or sown area are excluded because logarithmic transformations are used. Fourth, missing values are handled by model-specific listwise deletion. This means that the number of observations differs across models, especially when lagged variables, second-order climate lags, or spatial matching are required.
+
+The logarithmic variables are defined as
+\[
+\ln Y_{it}=\ln(GrainProduction_{it}),
+\]
+\[
+\ln A_{it}=\ln(SownArea_{it}),
+\]
+\[
+\ln Sub_{it}=\ln(Subsidy_{it}+1).
+\]
+Quadratic and interaction terms are then constructed:
+\[
+Temp^2_{it},\quad SPI^2_{it},\quad SPEI^2_{it},
+\]
+\[
+Temp_{it}\times \ln Sub_{it},\quad SPI_{it}\times \ln Sub_{it},\quad SPEI_{it}\times \ln Sub_{it}.
+\]
+
+The model-specific sample sizes are summarized in Table~\ref{tab:samples}. The fixed effects models use 521 observations, the spatial models use 490 observations after spatial matching and spatial lag construction, and the Panel ARDL-style model uses 364 observations because second-order lags reduce the available sample.
+
+\begin{table}[H]
+\centering
+\caption{Model-specific sample sizes}
+\label{tab:samples}
+\begin{tabular}{lcc}
+\toprule
+Model class & Main purpose & Observations \\
+\midrule
+Baseline fixed effects & Average climate relationship & 521 \\
+Nonlinear fixed effects & Nonlinear climate response & 521 \\
+Spatial models & Spatial correlation and robustness & 490 \\
+Panel ARDL-style model & Dynamic lagged climate relationships & 364 \\
+Random forest test set & Predictive evaluation & 124 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Construction of SPI and SPEI}
+
+In addition to direct temperature and precipitation variables, the thesis constructs two drought and water-balance indicators: the Standardized Precipitation Index (SPI) and the Standardized Precipitation Evapotranspiration Index (SPEI). SPI is calculated from monthly precipitation data. Positive SPI values indicate wetter-than-normal conditions, while negative SPI values indicate drier-than-normal conditions. The thesis mainly uses growing-season average SPI.
+
+SPEI extends SPI by incorporating potential evapotranspiration. Monthly potential evapotranspiration is estimated using the Thornthwaite method based on monthly average temperature and latitude. The monthly climatic water balance is defined as precipitation minus potential evapotranspiration. This water-balance series is then standardized to obtain SPEI. Compared with SPI, SPEI captures both precipitation supply and temperature-related evaporative demand.
+
+\subsection{Variable Definitions}
+
+Let \(Y_{it}\) denote grain production in region \(i\) and year \(t\). The dependent variable is
+\[
+y_{it}=\ln Y_{it}.
+\]
+The main explanatory and control variables are as follows:
+
+\begin{itemize}
+    \item \(Temp_{it}\): growing-season average temperature;
+    \item \(Prec_{it}\): growing-season cumulative precipitation;
+    \item \(SPI_{it}\): growing-season average Standardized Precipitation Index;
+    \item \(SPEI_{it}\): growing-season average Standardized Precipitation Evapotranspiration Index;
+    \item \(\ln A_{it}\): logarithm of grain crop sown area;
+    \item \(\ln Sub_{it}\): logarithm of agricultural subsidies;
+    \item \(\ln Y_{i,t-1}\): one-period lagged logarithm of grain production;
+    \item agro-ecological zone dummies: black-soil zone, Volga dry zone, risky farming zone, and other regions.
+\end{itemize}
+
+\subsection{Econometric and Machine-Learning Models}
+
+\subsubsection{Baseline Two-Way Fixed Effects Model}
+
+The baseline model is a two-way fixed effects model:
+\[
+\ln Y_{it}
+=
+\beta_1 Temp_{it}
++\beta_2 Prec_{it}
++\beta_3 SPI_{it}
++\beta_4 SPEI_{it}
++\beta_5 \ln Sub_{it}
++\beta_6 \ln A_{it}
++\rho \ln Y_{i,t-1}
++\mu_i+\lambda_t+\varepsilon_{it},
+\]
+where \(\mu_i\) denotes region fixed effects and \(\lambda_t\) denotes year fixed effects. Region fixed effects control for time-invariant regional characteristics, while year fixed effects control for shocks common to all regions in a given year.
+
+\subsubsection{Nonlinear Fixed Effects Model}
+
+To test nonlinear climate relationships, quadratic terms are introduced:
+\[
+\begin{aligned}
+\ln Y_{it}
+=&\ \beta_1 Temp_{it}
++\beta_2 Temp^2_{it}
++\beta_3 SPI_{it}
++\beta_4 SPI^2_{it} \\
+&+\beta_5 SPEI_{it}
++\beta_6 SPEI^2_{it}
++\gamma'Z_{it}
++\mu_i+\lambda_t+\varepsilon_{it},
+\end{aligned}
+\]
+where \(Z_{it}\) contains sown area, subsidies, lagged production, and interaction terms. If a linear term is positive and the corresponding quadratic term is negative, the relationship may be interpreted as an inverted-U-shaped empirical association. If the linear term is statistically unstable but the quadratic term is significantly negative, the result is interpreted more cautiously as evidence of concavity or diminishing marginal association.
+
+\subsubsection{Post-2014 Interaction Specification}
+
+To examine whether climate sensitivity changed after 2014, the following interaction specification can be used:
+\[
+\begin{aligned}
+\ln Y_{it}
+=&\ \beta_1 Temp_{it}
++\beta_2 SPI_{it}
++\beta_3 SPEI_{it}
++\delta_1(Post2014_t \times Temp_{it}) \\
+&+\delta_2(Post2014_t \times SPI_{it})
++\delta_3(Post2014_t \times SPEI_{it})
++\gamma'Z_{it}
++\mu_i+\lambda_t+\varepsilon_{it}.
+\end{aligned}
+\]
+Since year fixed effects are included, the main effect of \(Post2014_t\) is absorbed by year dummies. In the current computational output, the post-2014 interaction terms were not successfully retained as separate estimated coefficients. Therefore, this specification is retained as a methodological extension, but no substantive conclusion is drawn from it in the results section.
+
+\subsubsection{Quantile Regression}
+
+To examine distributional heterogeneity, the thesis estimates quantile regressions:
+\[
+Q_{\tau}(\ln Y_{it}\mid X_{it})
+=
+X'_{it}\beta_{\tau}+\mu_i+\lambda_t,
+\quad
+\tau\in\{0.25,0.50,0.75\}.
+\]
+Quantile regression reveals whether climate variables have different associations at the lower, median, and upper parts of the conditional production distribution.
+
+\subsubsection{Spatial Panel Models}
+
+Spatial dependence is examined using SAR-style and SDM-style specifications. The spatial weight matrix \(W\) is constructed using the Queen contiguity criterion and is row-standardized.
+
+The SAR-style model is
+\[
+\ln Y_{it}
+=
+\alpha_i+	au_t+\lambda \sum_j w_{ij}\ln Y_{jt}
++X'_{it}\beta+\varepsilon_{it}.
+\]
+The SDM-style model is
+\[
+\ln Y_{it}
+=
+\alpha_i+	au_t+\lambda \sum_j w_{ij}\ln Y_{jt}
++X'_{it}\beta
++\sum_j w_{ij}X'_{jt}\theta
++\varepsilon_{it}.
+\]
+The coefficient on \(W\ln Y\) measures spatial co-movement in grain production. The results are interpreted as evidence of spatial association rather than strict causal spillovers.
+
+\subsubsection{Panel ARDL-Style Model}
+
+To analyze lagged climate relationships, the thesis estimates a Panel ARDL-style specification:
+\[
+\ln Y_{it}
+=
+\rho \ln Y_{i,t-1}
++
+\sum_{l=0}^{2}\beta_l Temp_{i,t-l}
++
+\sum_{l=0}^{2}\theta_l SPI_{i,t-l}
++
+\sum_{l=0}^{2}\phi_l SPEI_{i,t-l}
++\gamma'Z_{it}
++\mu_i+\lambda_t+\varepsilon_{it}.
+\]
+This model is used to examine lagged correlations rather than to identify a structural dynamic causal mechanism.
+
+\subsubsection{Random Forest and SHAP}
+
+Random forest regression is used as a nonlinear machine-learning method for predictive analysis. Two specifications are considered. The first includes lagged production \(\ln Y_{i,t-1}\). The second excludes lagged production in order to evaluate the predictive role of current climate, subsidy, sown area, and agro-ecological variables. Model performance is evaluated using \(R^2\), RMSE, MAE, and cross-validation. SHAP values are used to interpret the relative contribution and direction of feature effects in the random forest model.
+
+\section{Results and Discussion}
+
+\subsection{Panel Data Characteristics and Spatial Distribution}
+
+Figure~\ref{fig:sample_regions} shows the spatial coverage of the sample regions. The sample includes the main agricultural regions of European Russia, the Volga region, southern Siberia, and parts of the Far East. The spatial distribution is consistent with the fact that Russian grain production is concentrated in agriculturally suitable regions rather than uniformly distributed across the whole national territory.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{sample_regions_map.png}
+\caption{Sample regions within Russia}
+\label{fig:sample_regions}
+\end{figure}
+
+Figure~\ref{fig:mean_log_yield} presents the spatial distribution of average log grain production across Russian regions. Grain production is spatially heterogeneous. Higher average values are mainly concentrated in the southern and European agricultural regions, while northern and some eastern regions have lower production levels or limited data coverage.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{mean_log_yield_map.png}
+\caption{Regional mean log grain production within Russia}
+\label{fig:mean_log_yield}
+\end{figure}
+
+Figures~\ref{fig:yearly_y}, \ref{fig:yearly_temp}, and \ref{fig:yearly_prec} show annual changes in regional average log grain production, growing-season average temperature, and growing-season cumulative precipitation. Log grain production shows an overall upward tendency with visible fluctuations, including a clear decline around 2010. Temperature fluctuates across years, and precipitation shows strong interannual variation, including a very low value in 2023. These patterns support the use of year fixed effects and motivate dynamic and nonlinear specifications.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{yearly_mean_log_yield.png}
+\caption{Yearly mean log grain production}
+\label{fig:yearly_y}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{yearly_mean_temperature.png}
+\caption{Yearly mean growing-season temperature}
+\label{fig:yearly_temp}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{yearly_mean_precipitation.png}
+\caption{Yearly mean growing-season precipitation}
+\label{fig:yearly_prec}
+\end{figure}
+
+\subsection{Baseline Fixed Effects Results}
+
+Table~\ref{tab:baseline_fe} reports the baseline fixed effects results. Growing-season average temperature is negatively and significantly associated with log grain production. SPI is positive and significant, while SPEI is negative and significant in this specification. The coefficients of subsidy variables have opposite signs depending on whether subsidies are measured in total or per unit area. This reinforces the need for cautious interpretation of subsidy variables.
+
+\begin{table}[H]
+\centering
+\caption{Baseline fixed effects results}
+\label{tab:baseline_fe}
+\begin{threeparttable}
+\begin{tabular}{lrrrr}
+\toprule
+Variable & Coefficient & Std. error & P-value & Significance \\
+\midrule
+Growing-season temperature & -0.2583 & 0.0565 & 0.0000 & *** \\
+Growing-season precipitation & -0.000011 & 0.000007 & 0.1097 &  \\
+SPI & 0.2548 & 0.0423 & 0.0000 & *** \\
+SPEI & -0.1781 & 0.0415 & 0.0000 & *** \\
+\(\ln\) Subsidy & -0.3488 & 0.0678 & 0.0000 & *** \\
+\(\ln\) Subsidy per area & 0.3257 & 0.0684 & 0.0000 & *** \\
+\(\ln Y_{t-1}\) & 0.1118 & 0.0801 & 0.1636 &  \\
+\midrule
+Observations & \multicolumn{4}{r}{521} \\
+Within \(R^2\) & \multicolumn{4}{r}{0.1383} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Notes: * \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\). Region and year fixed effects are included.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The negative temperature coefficient is consistent with the agronomic conditions of the main Russian grain-producing regions. Although Russia as a whole is a cold country, major grain regions are not necessarily made more productive by higher growing-season temperature. In the southern, Volga, and black-soil regions, higher temperature may be associated with heat stress, stronger evapotranspiration, and moisture shortage. Therefore, the result is compatible with the Russian agricultural context.
+
+\subsection{Nonlinear Climate Relationships}
+
+Table~\ref{tab:nonlinear_fe} reports the nonlinear fixed effects results. The squared terms of temperature, SPI, and SPEI are all negative, and the first two are statistically significant at the 1\% level. This supports the hypothesis that the relationship between climate conditions and grain production is nonlinear.
+
+\begin{table}[H]
+\centering
+\caption{Nonlinear fixed effects results}
+\label{tab:nonlinear_fe}
+\begin{threeparttable}
+\begin{adjustbox}{width=0.96\textwidth}
+\begin{tabular}{lrrrr}
+\toprule
+Variable & Coefficient & Std. error & P-value & Significance \\
+\midrule
+Growing-season temperature & -0.0790 & 0.0856 & 0.3562 &  \\
+Growing-season precipitation & -0.000017 & 0.000010 & 0.0737 & * \\
+SPI & -0.0500 & 0.1147 & 0.6628 &  \\
+SPEI & -0.1084 & 0.0775 & 0.1627 &  \\
+\(\ln\) Subsidy & -0.3559 & 0.0838 & 0.0000 & *** \\
+\(\ln\) Subsidy per area & 0.3201 & 0.0809 & 0.0001 & *** \\
+\(\ln Y_{t-1}\) & 0.1112 & 0.0843 & 0.1880 &  \\
+Temperature\(^2\) & -0.0054 & 0.0021 & 0.0099 & *** \\
+SPI\(^2\) & -0.0504 & 0.0183 & 0.0061 & *** \\
+SPEI\(^2\) & -0.0101 & 0.0058 & 0.0846 & * \\
+Temperature \(\times\) Subsidy & 0.0003 & 0.0005 & 0.6000 &  \\
+SPI \(\times\) Subsidy & 0.0136 & 0.0050 & 0.0073 & *** \\
+SPEI \(\times\) Subsidy & -0.0013 & 0.0027 & 0.6269 &  \\
+\midrule
+Observations & \multicolumn{4}{r}{521} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\begin{tablenotes}
+\small
+\item Notes: * \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\). Region and year fixed effects are included.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The negative squared terms indicate that climatic variables have diminishing marginal associations with grain production. This is consistent with Russian agricultural geography. Moderate warming can be beneficial in colder regions, but excessive heat can be harmful in southern and drought-prone regions. Similarly, moisture improvement can be beneficial under dry conditions, but excessive wetness may create waterlogging, disease pressure, or harvesting difficulties.
+
+Figures~\ref{fig:temp_quad}, \ref{fig:spi_quad}, and \ref{fig:spei_quad} visualize the nonlinear relationships between the main climate variables and log grain production. The temperature relationship increases at lower temperature ranges but flattens at higher values. The SPI and SPEI plots also show nonlinearity rather than a simple linear pattern.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{temp_quadratic_fit.png}
+\caption{Grain production and growing-season temperature}
+\label{fig:temp_quad}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{spi_quadratic_fit.png}
+\caption{Grain production and SPI}
+\label{fig:spi_quad}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{spei_quadratic_fit.png}
+\caption{Grain production and SPEI}
+\label{fig:spei_quad}
+\end{figure}
+
+\subsection{Quantile Regression Results}
+
+Table~\ref{tab:quantile} reports the quantile regression results for the 0.25, 0.50, and 0.75 quantiles. Temperature is positive and significant at all three quantiles, while the squared temperature term is negative and significant. This confirms that temperature has a nonlinear association with production across the conditional distribution. SPI is negative and significant at the 0.25 and 0.50 quantiles, but not significant at the 0.75 quantile. SPEI is positive at the lower and median quantiles, but becomes insignificant at the upper quantile.
+
+\begin{table}[H]
+\centering
+\caption{Key quantile regression results}
+\label{tab:quantile}
+\begin{threeparttable}
+\begin{tabular}{lrrr}
+\toprule
+Variable & \(Q_{0.25}\) & \(Q_{0.50}\) & \(Q_{0.75}\) \\
+\midrule
+Growing-season temperature & 0.3565*** & 0.4060*** & 0.3341*** \\
+Growing-season precipitation & -0.000010* & -0.000022*** & 0.000027*** \\
+SPI & -0.1772** & -0.2212** & 0.1299 \\
+SPEI & 0.0915** & 0.0926* & 0.0105 \\
+\(\ln Y_{t-1}\) & 0.2319*** & 0.1824*** & 0.4238*** \\
+Temperature\(^2\) & -0.0097*** & -0.0084*** & -0.0092*** \\
+SPI\(^2\) & -0.0356** & -0.0385** & -0.0063 \\
+SPEI\(^2\) & -0.0226*** & -0.0189*** & -0.0136*** \\
+SPI \(\times\) Subsidy & 0.0091*** & 0.0092** & -0.0083* \\
+SPEI \(\times\) Subsidy & 0.0005 & 0.0037** & 0.0022 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Notes: * \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\). Quantile regressions include the main controls used in the empirical specification.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Figures~\ref{fig:qr_temp} and \ref{fig:qr_spi} show the changes in the temperature and SPI coefficients across quantiles. The coefficient of temperature remains positive across quantiles, while the SPI coefficient changes from negative at the lower and median quantiles to positive but insignificant at the upper quantile. This suggests that moisture anomalies are more relevant for lower and median production observations, while high-production observations may be less sensitive to SPI in this specification.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{quantile_temperature_coefficients.png}
+\caption{Quantile regression coefficients: growing-season temperature}
+\label{fig:qr_temp}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{quantile_spi_coefficients.png}
+\caption{Quantile regression coefficients: SPI}
+\label{fig:qr_spi}
+\end{figure}
+
+The quantile results support the conclusion that climate sensitivity is not uniform across the production distribution. Mean regression alone is therefore insufficient for describing the empirical relationship between climate variables and Russian grain production.
+
+\subsection{Spatial Panel Model Results}
+
+Russian grain production may exhibit spatial correlation due to neighboring regions sharing similar climate, soils, infrastructure, markets, and production technologies. Table~\ref{tab:spatial} reports the SAR-style and SDM-style results. In both models, the spatial lag of log grain production is positive and highly significant.
+
+\begin{table}[H]
+\centering
+\caption{Spatial panel model results}
+\label{tab:spatial}
+\begin{threeparttable}
+\begin{tabular}{lrrrr}
+\toprule
+Model & \(W\ln Y\) coefficient & Std. error & P-value & Significance \\
+\midrule
+SAR-style & 0.6380 & 0.0832 & 0.0000 & *** \\
+SDM-style & 0.6741 & 0.0918 & 0.0000 & *** \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Notes: * \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\). Both models include region and year fixed effects.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The positive spatial lag coefficient indicates strong spatial co-movement in Russian grain production. This result fits the Russian agricultural context: grain production is geographically clustered in regions with favorable agro-climatic and soil conditions, especially in the black-soil, southern, and Volga regions. However, the result should not be interpreted as strict causal spillover from neighboring regions. It is more appropriate to interpret it as evidence of spatial association.
+
+The SDM-style model includes spatially lagged covariates. Most of these spatially lagged covariates are statistically insignificant. Therefore, the current evidence more strongly supports spatial correlation in production itself rather than direct causal effects from neighboring regions' climate or subsidy variables.
+
+\subsection{Dynamic Lag Effects}
+
+Table~\ref{tab:ardl} reports the Panel ARDL-style results. Current growing-season temperature is negatively and significantly associated with grain production. The second-order lag of temperature is positive and significant. The second-order lag of SPI is negative and significant, while the second-order lag of SPEI is positive and significant. These results suggest that climate variables may have lagged associations with grain production.
+
+\begin{table}[H]
+\centering
+\caption{Panel ARDL-style results}
+\label{tab:ardl}
+\begin{threeparttable}
+\begin{adjustbox}{width=0.95\textwidth}
+\begin{tabular}{lrrrr}
+\toprule
+Variable & Coefficient & Std. error & P-value & Significance \\
+\midrule
+Growing-season temperature & -0.2286 & 0.1130 & 0.0440 & ** \\
+Growing-season precipitation & -0.000026 & 0.000014 & 0.0550 & * \\
+SPI & 0.1928 & 0.1274 & 0.1315 &  \\
+SPEI & -0.1528 & 0.0804 & 0.0583 & * \\
+\(\ln Y_{t-1}\) & 0.0489 & 0.0602 & 0.4176 &  \\
+Temperature \(\times\) Subsidy & -0.0012 & 0.0006 & 0.0344 & ** \\
+Temperature\(_{t-1}\) & 0.0145 & 0.0510 & 0.7765 &  \\
+Temperature\(_{t-2}\) & 0.1594 & 0.0742 & 0.0325 & ** \\
+SPI\(_{t-1}\) & -0.0107 & 0.0627 & 0.8650 &  \\
+SPI\(_{t-2}\) & -0.2477 & 0.0651 & 0.0002 & *** \\
+SPEI\(_{t-1}\) & -0.0101 & 0.0432 & 0.8151 &  \\
+SPEI\(_{t-2}\) & 0.1455 & 0.0560 & 0.0099 & *** \\
+\midrule
+Observations & \multicolumn{4}{r}{364} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\begin{tablenotes}
+\small
+\item Notes: * \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\). The model includes fixed effects and lagged climate variables. Results are interpreted as dynamic correlations rather than causal lag effects.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The signs of lagged SPI and SPEI differ, which is not necessarily contradictory. SPI captures precipitation anomalies, while SPEI captures the broader water balance by incorporating potential evapotranspiration. Therefore, they may reflect different moisture mechanisms. The lagged results should be interpreted cautiously as empirical dynamic associations.
+
+\subsection{Random Forest Feature Importance and SHAP Interpretation}
+
+Random forest models are used to evaluate predictive importance. Table~\ref{tab:rf_perf} summarizes the predictive performance. When lagged production is included, the random forest model has a test \(R^2\) of 0.5330 and a cross-validation mean \(R^2\) of 0.7138. When lagged production is excluded, the test \(R^2\) becomes negative, although the cross-validation mean \(R^2\) remains positive. This indicates that historical production is crucial for stable prediction.
+
+\begin{table}[H]
+\centering
+\caption{Random forest predictive performance}
+\label{tab:rf_perf}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Test \(R^2\) & RMSE & MAE & CV \(R^2\) mean & CV \(R^2\) std. \\
+\midrule
+RF with lagged production & 0.5330 & 0.2733 & 0.1929 & 0.7138 & 0.0892 \\
+RF without lagged production & -0.0945 & 0.4184 & 0.3118 & 0.2584 & 0.2488 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:rf_lag} shows random forest feature importance when lagged production is included. The lagged dependent variable dominates the model, which indicates strong path dependence in Russian regional grain production. This is consistent with the persistence of regional land quality, production infrastructure, machinery, farm organization, and historical production capacity.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{rf_importance_with_lag.png}
+\caption{Random forest feature importance with lagged production}
+\label{fig:rf_lag}
+\end{figure}
+
+Figure~\ref{fig:rf_nolag} shows random forest feature importance when lagged production is excluded. In this case, growing-season temperature is the most important predictor, followed by precipitation, sown area, black-soil zone membership, subsidies, and the squared temperature term. This is agronomically plausible for Russia: temperature, moisture, cultivated area, and black-soil conditions are central to grain production.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{rf_importance_without_lag.png}
+\caption{Random forest feature importance without lagged production}
+\label{fig:rf_nolag}
+\end{figure}
+
+SHAP results provide an additional interpretation of feature importance. Table~\ref{tab:shap} lists the largest mean absolute SHAP values for the random forest model without lagged production. Growing-season temperature has the largest SHAP contribution, followed by total subsidies, precipitation, black-soil zone membership, the SPEI--subsidy interaction, the squared temperature term, and sown area.
+
+\begin{table}[H]
+\centering
+\caption{Main SHAP feature importance without lagged production}
+\label{tab:shap}
+\begin{tabular}{lr}
+\toprule
+Feature & Mean absolute SHAP value \\
+\midrule
+Growing-season temperature & 0.1825 \\
+\(\ln\) Subsidy & 0.0643 \\
+Growing-season precipitation & 0.0635 \\
+Agro zone: Black soil & 0.0635 \\
+SPEI \(\times\) Subsidy & 0.0524 \\
+Temperature\(^2\) & 0.0490 \\
+\(\ln\) Sown area & 0.0486 \\
+\(\ln\) Subsidy per area & 0.0338 \\
+SPEI & 0.0150 \\
+Temperature \(\times\) Subsidy & 0.0134 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:shap_nolag} shows the SHAP summary plot without lagged production. High values of growing-season temperature tend to push the prediction upward for part of the sample, while very low temperature values tend to reduce predicted production. At the same time, the fixed effects and nonlinear regression results show that temperature also has a negative average association and a concave relationship after controlling for fixed effects and other variables. These findings are not contradictory: the random forest describes predictive patterns, whereas fixed effects models estimate conditional statistical associations within a panel structure.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{shap_summary_without_lag.png}
+\caption{SHAP summary plot for the random forest model without lagged production}
+\label{fig:shap_nolag}
+\end{figure}
+
+\subsection{Model Comparison}
+
+Table~\ref{tab:model_compare} summarizes the main model classes. The models should not be compared mechanically using one single statistic, because they serve different purposes. Fixed effects models are mainly used for conditional empirical relationships; spatial models are used to test spatial co-movement; ARDL-style models examine lagged associations; and random forests evaluate predictive importance.
+
+\begin{table}[H]
+\centering
+\caption{Model comparison summary}
+\label{tab:model_compare}
+\begin{threeparttable}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{p{3.0cm}p{4.4cm}rrrrp{4.2cm}}
+\toprule
+Model & Purpose & N & Within \(R^2\) & Overall/Test \(R^2\) & RMSE & Main finding \\
+\midrule
+FE baseline & Average climate relationship & 521 & 0.1383 & -8.7517 & -- & Temperature is negatively associated with production; SPI and SPEI are significant. \\
+FE nonlinear & Nonlinear climate response & 521 & -0.1948 & -7.0737 & -- & Squared terms of temperature, SPI, and SPEI are negative. \\
+SAR-style & Spatial correlation & 490 & 0.2540 & -0.9072 & -- & Spatial lag of production is strongly significant. \\
+SDM-style & Spatial robustness & 490 & 0.4809 & -1.2366 & -- & Spatial lag remains significant; most spatially lagged covariates are weak. \\
+Panel ARDL-style & Lagged climate relationships & 364 & -0.0622 & -1.7550 & -- & Some second-order lagged climate variables are significant. \\
+RF with lag & Prediction & 124 & -- & 0.5330 & 0.2733 & Lagged production dominates prediction. \\
+RF without lag & Prediction without historical production & 124 & -- & -0.0945 & 0.4184 & Climate variables become central predictors but prediction is less stable. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\begin{tablenotes}
+\small
+\item Notes: The indicators are not fully comparable across model classes. Negative overall \(R^2\) values in fixed effects models can occur due to the use of within transformations and model-specific definitions. RF performance is reported on the test set.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The overall evidence supports the central argument of this thesis. Russian grain production is not well described by a single static linear model. Instead, the results point to nonlinear climate responses, spatial co-movement, lagged climate associations, distributional heterogeneity, and strong predictive persistence.
+
+\section{Conclusion}
+
+This thesis examined the empirical relationship between climatic variables and grain production in Russian regions using region--year panel data for 2007--2023. The study constructed a multidimensional empirical framework combining two-way fixed effects models, nonlinear specifications, quantile regression, spatial panel models, Panel ARDL-style models, random forest models, cross-validation, and SHAP interpretation.
+
+The first research question asked whether there is a stable empirical relationship between regional grain production and climatic variables. The results show that climatic variables are systematically associated with grain production. In the baseline fixed effects model, growing-season temperature is negatively and significantly associated with log grain production, while SPI and SPEI are also statistically significant. This supports the view that climate conditions are relevant for Russian regional grain production.
+
+The second research question asked whether the climate--production relationship is nonlinear. The answer is affirmative. The nonlinear fixed effects model shows that the squared terms of growing-season temperature, SPI, and SPEI are negative. This indicates that climatic conditions are better interpreted within a nonlinear framework. Moderate changes in temperature or water balance may be associated with higher output in some contexts, but excessive heat, drought, or wetness may be associated with lower production.
+
+The third research question asked whether climate sensitivity differs across the production distribution. The quantile regression results show that the coefficients of temperature, SPI, SPEI, and their squared terms differ across quantiles. Therefore, average-effect models alone are insufficient for understanding the distributional structure of climate sensitivity.
+
+The fourth research question asked whether Russian regional grain production exhibits spatial correlation. The SAR-style and SDM-style results show that the spatial lag of log grain production is positive and highly significant. This indicates strong spatial co-movement among neighboring regions. This finding is consistent with the geography of Russian agriculture, where production is concentrated in regions with favorable soils, climate, infrastructure, and production traditions. However, the result should be interpreted as spatial association rather than strict causal spillover.
+
+The fifth research question asked whether climate variables have lagged associations with grain production. The Panel ARDL-style results show that some second-order lagged climate variables are significant. In particular, lagged temperature, SPI, and SPEI are associated with current grain production. These results suggest that climate conditions may be linked to later production through soil moisture, crop rotation, input adjustment, and regional adaptation. However, the findings should be interpreted as dynamic correlations rather than causal lag effects.
+
+The sixth research question asked which variables are most important from a predictive perspective. Random forest results show that lagged production is the dominant predictor when included. When lagged production is excluded, growing-season temperature, precipitation, sown area, black-soil zone membership, and subsidy variables become important. SHAP results further confirm that growing-season temperature is the leading predictor in the no-lag random forest specification.
+
+Overall, the empirical evidence supports the conclusion that the relationship between climate conditions and Russian grain production is not a single linear process. It is nonlinear, spatially correlated, dynamically lagged, heterogeneous across the production distribution, and strongly shaped by historical production patterns. Therefore, agricultural climate-adaptation policy in Russia should not rely on uniform national-level interpretations. Instead, policy design should consider regional ecological conditions, production history, spatial linkages, and differences in sensitivity across production levels.
+
+This thesis has several limitations. First, climate variables are constructed using administrative-region polygon averages, while a more precise approach would weight climate grids by cropland or actual grain-growing areas. Second, subsidy variables may be endogenous because policy support may respond to production shocks or regional needs. Third, the spatial weight matrix is based mainly on geographical contiguity and does not include transport links, market distance, or agro-ecological similarity. Fourth, although the panel covers 2007--2023, this period remains limited for identifying long-term climate change mechanisms. Future research may incorporate cropland-weighted climate variables, irrigation data, market prices, agricultural technology indicators, alternative spatial weight matrices, and stronger causal identification strategies such as event-study designs or instrumental variables.
+
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem{lobell2007}
+Lobell, D. B., and Field, C. B. (2007).
+Global scale climate--crop yield relationships and the impacts of recent warming.
+\textit{Environmental Research Letters}, 2(1), 014002.
+
+\bibitem{schlenker2009}
+Schlenker, W., and Roberts, M. J. (2009).
+Nonlinear temperature effects indicate severe damages to U.S. crop yields under climate change.
+\textit{Proceedings of the National Academy of Sciences}, 106(37), 15594--15598.
+
+\bibitem{gornall2010}
+Gornall, J., Betts, R., Burke, E., Clark, R., Camp, J., Willett, K., and Wiltshire, A. (2010).
+Implications of climate change for agricultural productivity in the early twenty-first century.
+\textit{Philosophical Transactions of the Royal Society B}, 365(1554), 2973--2989.
+
+\bibitem{rosenzweig2014}
+Rosenzweig, C., Elliott, J., Deryng, D., Ruane, A. C., M{\"u}ller, C., Arneth, A., et al. (2014).
+Assessing agricultural risks of climate change in the 21st century in a global gridded crop model intercomparison.
+\textit{Proceedings of the National Academy of Sciences}, 111(9), 3268--3273.
+
+\bibitem{challinor2014}
+Challinor, A. J., Watson, J., Lobell, D. B., Howden, S. M., Smith, D. R., and Chhetri, N. (2014).
+A meta-analysis of crop yield under climate change and adaptation.
+\textit{Nature Climate Change}, 4, 287--291.
+
+\bibitem{lesk2016}
+Lesk, C., Rowhani, P., and Ramankutty, N. (2016).
+Influence of extreme weather disasters on global crop production.
+\textit{Nature}, 529, 84--87.
+
+\bibitem{ipcc2022}
+IPCC. (2022).
+\textit{Climate Change 2022: Impacts, Adaptation and Vulnerability}.
+Cambridge University Press.
+
+\bibitem{fao2021}
+FAO. (2021).
+\textit{The State of Food and Agriculture}.
+Food and Agriculture Organization of the United Nations.
+
+\bibitem{mckee1993}
+McKee, T. B., Doesken, N. J., and Kleist, J. (1993).
+The relationship of drought frequency and duration to time scales.
+In \textit{Proceedings of the 8th Conference on Applied Climatology}, American Meteorological Society.
+
+\bibitem{vicente2010}
+Vicente-Serrano, S. M., Beguer{\'i}a, S., and L{\'o}pez-Moreno, J. I. (2010).
+A multiscalar drought index sensitive to global warming: The Standardized Precipitation Evapotranspiration Index.
+\textit{Journal of Climate}, 23(7), 1696--1718.
+
+\bibitem{thornthwaite1948}
+Thornthwaite, C. W. (1948).
+An approach toward a rational classification of climate.
+\textit{Geographical Review}, 38(1), 55--94.
+
+\bibitem{hersbach2020}
+Hersbach, H., Bell, B., Berrisford, P., Hirahara, S., Hor{\'a}nyi, A., Mu{\~n}oz-Sabater, J., et al. (2020).
+The ERA5 global reanalysis.
+\textit{Quarterly Journal of the Royal Meteorological Society}, 146(730), 1999--2049.
+
+\bibitem{munoz2021}
+Mu{\~n}oz-Sabater, J., Dutra, E., Agust{\'i}-Panareda, A., Albergel, C., Arduini, G., Balsamo, G., et al. (2021).
+ERA5-Land: A state-of-the-art global reanalysis dataset for land applications.
+\textit{Earth System Science Data}, 13, 4349--4383.
+
+\bibitem{wooldridge2010}
+Wooldridge, J. M. (2010).
+\textit{Econometric Analysis of Cross Section and Panel Data}.
+MIT Press.
+
+\bibitem{baltagi2005}
+Baltagi, B. H. (2005).
+\textit{Econometric Analysis of Panel Data}.
+John Wiley \& Sons.
+
+\bibitem{koenker1978}
+Koenker, R., and Bassett, G. (1978).
+Regression quantiles.
+\textit{Econometrica}, 46(1), 33--50.
+
+\bibitem{koenker2005}
+Koenker, R. (2005).
+\textit{Quantile Regression}.
+Cambridge University Press.
+
+\bibitem{anselin1988}
+Anselin, L. (1988).
+\textit{Spatial Econometrics: Methods and Models}.
+Kluwer Academic Publishers.
+
+\bibitem{lesage2009}
+LeSage, J., and Pace, R. K. (2009).
+\textit{Introduction to Spatial Econometrics}.
+CRC Press.
+
+\bibitem{elhorst2014}
+Elhorst, J. P. (2014).
+\textit{Spatial Econometrics: From Cross-Sectional Data to Spatial Panels}.
+Springer.
+
+\bibitem{breiman2001}
+Breiman, L. (2001).
+Random forests.
+\textit{Machine Learning}, 45, 5--32.
+
+\bibitem{hastie2009}
+Hastie, T., Tibshirani, R., and Friedman, J. (2009).
+\textit{The Elements of Statistical Learning}.
+Springer.
+
+\bibitem{lundberg2017}
+Lundberg, S. M., and Lee, S.-I. (2017).
+A unified approach to interpreting model predictions.
+In \textit{Advances in Neural Information Processing Systems}.
+
+\bibitem{lundberg2020}
+Lundberg, S. M., Erion, G., Chen, H., DeGrave, A., Prutkin, J. M., Nair, B., et al. (2020).
+From local explanations to global understanding with explainable AI for trees.
+\textit{Nature Machine Intelligence}, 2, 56--67.
+
+\bibitem{shapley1953}
+Shapley, L. S. (1953).
+A value for n-person games.
+In \textit{Contributions to the Theory of Games}, Princeton University Press.
+
+\bibitem{dronin2005}
+Dronin, N., and Kirilenko, A. (2005).
+Climate change and food stress in Russia.
+\textit{Climatic Change}, 72, 123--150.
+
+\bibitem{alcamo2007}
+Alcamo, J., Dronin, N., Endejan, M., Golubev, G., and Kirilenko, A. (2007).
+A new assessment of climate change impacts on food production shortfalls and water availability in Russia.
+\textit{Global Environmental Change}, 17(3--4), 429--444.
+
+\bibitem{lioubimtseva2012}
+Lioubimtseva, E., and Henebry, G. M. (2012).
+Grain production trends in Russia, Ukraine and Kazakhstan.
+\textit{Frontiers of Earth Science}, 6, 157--166.
+
+\bibitem{wegren2018}
+Wegren, S. K. (2018).
+The smallholders in contemporary Russian agriculture.
+\textit{Journal of Agrarian Change}, 18(4), 913--925.
+
+\bibitem{mirzabaev2019}
+Mirzabaev, A., Wu, J., Evans, J., Garc{\'i}a-Oliva, F., Hussein, I. A. G., Iqbal, M. H., et al. (2019).
+Desertification.
+In \textit{Climate Change and Land: An IPCC Special Report}.
+IPCC.
+
+\bibitem{moran1950}
+Moran, P. A. P. (1950).
+Notes on continuous stochastic phenomena.
+\textit{Biometrika}, 37(1/2), 17--23.
+
+\bibitem{cliff1981}
+Cliff, A. D., and Ord, J. K. (1981).
+\textit{Spatial Processes: Models and Applications}.
+Pion.
+
+\bibitem{rosstat}
+Federal State Statistics Service of Russia.
+Agricultural statistics and regional statistical tables.
+Online statistical database.
+
+\bibitem{cds}
+Copernicus Climate Data Store.
+ERA5-Land monthly averaged data.
+Online climate data service.
+
+\bibitem{gadm}
+GADM.
+Database of Global Administrative Areas.
+Online administrative boundary database.
+
+\bibitem{faostat}
+FAOSTAT.
+Crops and livestock products database.
+Food and Agriculture Organization of the United Nations.
+
+\bibitem{oecd}
+OECD.
+Agricultural Policy Monitoring and Evaluation.
+Online database.
+
+\bibitem{worldbank}
+World Bank.
+World Development Indicators.
+Online database.
+
+\end{thebibliography}
+
+\end{document}

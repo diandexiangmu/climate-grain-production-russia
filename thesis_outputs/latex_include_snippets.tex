@@ -1,0 +1,99 @@
+% Put this in the LaTeX preamble:
+% \graphicspath{{thesis_outputs/figures/}{thesis_outputs/tables/}}
+
+% Descriptive statistics:
+\input{thesis_outputs/tables/descriptive_statistics.tex}
+
+% Model comparison:
+\input{thesis_outputs/tables/model_comparison_summary.tex}
+
+% Suggested figure calls:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig1_climate_data_workflow.png}
+\caption{Construction of climate variables and assembly of the panel dataset}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{sample_regions_map.png}
+\caption{Outline of Russia and spatial distribution of sample regions}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{mean_log_yield_map.png}
+\caption{Spatial distribution of average log grain production across Russian regions}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{yearly_mean_log_yield.png}
+\caption{Annual changes in regional average log grain production}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{yearly_mean_temperature.png}
+\caption{Annual changes in growing-season average temperature}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{yearly_mean_precipitation.png}
+\caption{Annual changes in growing-season cumulative precipitation}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{temp_quadratic_fit.png}
+\caption{Nonlinear relationship between growing-season average temperature and log grain production}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{spi_quadratic_fit.png}
+\caption{Nonlinear relationship between SPI and log grain production}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{spei_quadratic_fit.png}
+\caption{Nonlinear relationship between SPEI and log grain production}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{quantile_temperature_coefficients.png}
+\caption{Changes in growing-season average temperature coefficients across quantiles}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{quantile_spi_coefficients.png}
+\caption{Changes in SPI coefficients across quantiles}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{rf_importance_with_lag.png}
+\caption{Random forest variable importance: with lagged production}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{rf_importance_without_lag.png}
+\caption{Random forest variable importance: without lagged production}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{shap_summary_with_lag.png}
+\caption{SHAP summary plot: random forest with lagged production}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{shap_summary_without_lag.png}
+\caption{SHAP summary plot: random forest without lagged production}
+\end{figure}

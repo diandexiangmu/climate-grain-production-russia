@@ -1,0 +1,99 @@
+                         QuantReg Regression Results                          
+==============================================================================
+Dep. Variable:               ln_yield   Pseudo R-squared:               0.7326
+Model:                       QuantReg   Bandwidth:                     0.07840
+Method:                 Least Squares   Sparsity:                       0.2828
+Date:                Sun, 26 Apr 2026   No. Observations:                  490
+Time:                        01:34:50   Df Residuals:                      406
+                                        Df Model:                           83
+========================================================================================================
+                                           coef    std err          t      P>|t|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                                4.5154      1.060      4.259      0.000       2.431       6.600
+C(region_match)[T.Altay]                 0.1647      0.375      0.439      0.661      -0.573       0.902
+C(region_match)[T.Amur]                  0.3944      0.337      1.171      0.242      -0.268       1.057
+C(region_match)[T.Arkhangel'sk]          0.8473      0.638      1.328      0.185      -0.407       2.101
+C(region_match)[T.Astrakhan']           -1.2946      0.311     -4.164      0.000      -1.906      -0.683
+C(region_match)[T.Bashkortostan]        -0.0816      0.277     -0.295      0.768      -0.626       0.463
+C(region_match)[T.Belgorod]             -0.0546      0.132     -0.414      0.679      -0.314       0.205
+C(region_match)[T.Bryansk]               0.1929      0.153      1.263      0.207      -0.107       0.493
+C(region_match)[T.Buryat]                0.5437      0.509      1.068      0.286      -0.457       1.544
+C(region_match)[T.Chechnya]             -0.5794      0.077     -7.477      0.000      -0.732      -0.427
+C(region_match)[T.Chelyabinsk]          -0.4317      0.264     -1.635      0.103      -0.951       0.087
+C(region_match)[T.Dagestan]             -0.4597      0.091     -5.026      0.000      -0.640      -0.280
+C(region_match)[T.Ingush]               -0.2267      0.132     -1.716      0.087      -0.486       0.033
+C(region_match)[T.Irkutsk]               0.6019      0.440      1.369      0.172      -0.263       1.467
+C(region_match)[T.Ivanovo]              -0.2912      0.207     -1.408      0.160      -0.698       0.115
+C(region_match)[T.Kabardin-Balkar]       0.9907      0.267      3.709      0.000       0.466       1.516
+C(region_match)[T.Kalmyk]               -1.3101      0.232     -5.651      0.000      -1.766      -0.854
+C(region_match)[T.Kaluga]               -0.2032      0.177     -1.149      0.251      -0.551       0.145
+C(region_match)[T.Karachay-Cherkess]     1.2853      0.370      3.472      0.001       0.558       2.013
+C(region_match)[T.Khabarovsk]            0.6263      0.477      1.314      0.190      -0.311       1.563
+C(region_match)[T.Khakass]               0.4842      0.398      1.216      0.225      -0.299       1.267
+C(region_match)[T.Kirov]                 0.0108      0.291      0.037      0.970      -0.560       0.582
+C(region_match)[T.Komi]                 -0.0784      0.733     -0.107      0.915      -1.519       1.362
+C(region_match)[T.Kostroma]             -0.2654      0.261     -1.015      0.311      -0.779       0.248
+C(region_match)[T.Krasnodar]            -0.1076      0.211     -0.510      0.610      -0.522       0.307
+C(region_match)[T.Krasnoyarsk]           1.8548      0.733      2.531      0.012       0.414       3.295
+C(region_match)[T.Kurgan]               -0.3971      0.242     -1.644      0.101      -0.872       0.078
+C(region_match)[T.Kursk]                 0.1536      0.169      0.911      0.363      -0.178       0.485
+C(region_match)[T.Leningrad]             0.4001      0.278      1.439      0.151      -0.147       0.947
+C(region_match)[T.Lipetsk]               0.0758      0.160      0.474      0.636      -0.239       0.390
+C(region_match)[T.Mariy-El]             -0.2966      0.201     -1.476      0.141      -0.692       0.099
+C(region_match)[T.Mordovia]             -0.0702      0.179     -0.392      0.696      -0.423       0.282
+C(region_match)[T.Moskva]               -0.0024      0.182     -0.013      0.989      -0.360       0.355
+C(region_match)[T.Novgorod]             -0.0874      0.267     -0.328      0.743      -0.612       0.437
+C(region_match)[T.Novosibirsk]          -0.1609      0.300     -0.536      0.592      -0.751       0.429
+C(region_match)[T.Omsk]                 -0.2760      0.312     -0.885      0.377      -0.889       0.337
+C(region_match)[T.Orenburg]             -0.9278      0.219     -4.233      0.000      -1.359      -0.497
+C(region_match)[T.Penza]                -0.0432      0.184     -0.235      0.814      -0.404       0.318
+C(region_match)[T.Perm']                 0.0704      0.335      0.210      0.834      -0.589       0.730
+C(region_match)[T.Primor'ye]             0.5587      0.238      2.350      0.019       0.091       1.026
+C(region_match)[T.Pskov]                -0.0205      0.217     -0.094      0.925      -0.448       0.407
+C(region_match)[T.Rostov]               -0.5729      0.239     -2.401      0.017      -1.042      -0.104
+C(region_match)[T.Ryazan']              -0.0174      0.177     -0.099      0.921      -0.365       0.330
+C(region_match)[T.Sakha]                 0.7987      0.661      1.208      0.228      -0.501       2.098
+C(region_match)[T.Samara]               -0.4941      0.173     -2.857      0.005      -0.834      -0.154
+C(region_match)[T.Saratov]              -0.6505      0.196     -3.311      0.001      -1.037      -0.264
+C(region_match)[T.Smolensk]             -0.0870      0.193     -0.450      0.653      -0.467       0.293
+C(region_match)[T.Stavropol']           -0.6421      0.231     -2.780      0.006      -1.096      -0.188
+C(region_match)[T.Sverdlovsk]            0.2124      0.301      0.706      0.480      -0.379       0.803
+C(region_match)[T.Tambov]               -0.0481      0.170     -0.283      0.777      -0.382       0.286
+C(region_match)[T.Tatarstan]             0.0492      0.244      0.201      0.840      -0.431       0.529
+C(region_match)[T.Tomsk]                 0.2710      0.335      0.810      0.418      -0.387       0.929
+C(region_match)[T.Tula]                  0.0753      0.192      0.392      0.695      -0.302       0.452
+C(region_match)[T.Tuva]                  0.2841      0.505      0.563      0.574      -0.708       1.276
+C(region_match)[T.Tver']                -0.2161      0.226     -0.954      0.340      -0.661       0.229
+C(region_match)[T.Tyumen']               0.0942      0.298      0.316      0.752      -0.491       0.680
+C(region_match)[T.Udmurt]               -0.0459      0.252     -0.182      0.856      -0.541       0.449
+C(region_match)[T.Ul'yanovsk]           -0.2307      0.172     -1.342      0.180      -0.569       0.107
+C(region_match)[T.Vladimir]             -0.1788      0.178     -1.005      0.316      -0.529       0.171
+C(region_match)[T.Volgograd]            -0.8661      0.203     -4.257      0.000      -1.266      -0.466
+C(region_match)[T.Vologda]               0.0471      0.301      0.156      0.876      -0.545       0.639
+C(region_match)[T.Voronezh]             -0.3383      0.171     -1.979      0.048      -0.674      -0.002
+C(region_match)[T.Yaroslavl']           -0.1982      0.234     -0.846      0.398      -0.659       0.262
+C(region_match)[T.Zabaykal'ye]           0.0062      0.410      0.015      0.988      -0.800       0.813
+C(year)[T.2017]                          0.0734      0.032      2.318      0.021       0.011       0.136
+C(year)[T.2018]                          0.0449      0.028      1.600      0.110      -0.010       0.100
+C(year)[T.2019]                          0.0581      0.030      1.924      0.055      -0.001       0.117
+C(year)[T.2020]                          0.1540      0.026      5.858      0.000       0.102       0.206
+C(year)[T.2021]                          0.0681      0.025      2.701      0.007       0.019       0.118
+C(year)[T.2022]                          0.2468      0.030      8.164      0.000       0.187       0.306
+C(year)[T.2023]                         -0.2595      0.116     -2.231      0.026      -0.488      -0.031
+temp_grow_mean                           0.2720      0.067      4.036      0.000       0.140       0.405
+prec_grow_sum                        -2.237e-05   6.65e-06     -3.367      0.001   -3.54e-05   -9.31e-06
+spi_grow_mean                           -0.1900      0.109     -1.741      0.082      -0.404       0.024
+spei_grow_mean                           0.1271      0.057      2.247      0.025       0.016       0.238
+ln_subsidy_main                         -0.0697      0.066     -1.057      0.291      -0.199       0.060
+ln_subsidy_per_area                      0.0488      0.066      0.739      0.460      -0.081       0.179
+ln_yield_lag1                            0.1542      0.030      5.078      0.000       0.094       0.214
+temp_grow_sq                            -0.0034      0.001     -2.371      0.018      -0.006      -0.001
+spi_sq                                  -0.0024      0.018     -0.138      0.890      -0.037       0.032
+spei_sq                                 -0.0170      0.004     -4.447      0.000      -0.025      -0.009
+temp_x_subsidy                       -3.245e-05      0.000     -0.091      0.928      -0.001       0.001
+spi_x_subsidy                            0.0065      0.005      1.412      0.159      -0.003       0.015
+spei_x_subsidy                           0.0022      0.002      1.172      0.242      -0.001       0.006
+========================================================================================================
+
+The condition number is large, 4.56e+06. This might indicate that there are
+strong multicollinearity or other numerical problems.

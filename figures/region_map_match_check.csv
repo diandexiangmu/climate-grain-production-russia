@@ -1,0 +1,72 @@
+﻿panel_region_original,panel_region_clean,map_region_original,map_region_clean,match_method,match_score
+Алтайский край,altai,Алтайский край,altai,exact,1.0
+Амурская область,amur,Амурская область,amur,exact,1.0
+Архангельская область,arkhangelsk,Архангельская область,arkhangelsk,exact,1.0
+Астраханская область,astrakhan,Астраханская область,astrakhan,exact,1.0
+Белгородская область,belgorod,Белгородская область,belgorod,exact,1.0
+Брянская область,bryansk,Брянская область,bryansk,exact,1.0
+Чеченская Республика,chechenskayaublika,Чувашская Республика,chuvashskayaublika,fuzzy,0.778
+Челябинская область,chelyabinsk,Челябинская область,chelyabinsk,exact,1.0
+Иркутская область,irkutsk,Иркутская область,irkutsk,exact,1.0
+Ивановская область,ivanovo,Ивановская область,ivanovo,exact,1.0
+Кабардино-Балкарская Республика,kabardino balkarskayaublika,Кабардино-Балкарская Республика,kabardino balkarskayaublika,exact,1.0
+Калининградская область,kaliningrad,Калининградская область,kaliningrad,exact,1.0
+Калужская область,kaluga,Калужская область,kaluga,exact,1.0
+Камчатский край,kamchatskiy,Камчатская край,kamchatskaya,fuzzy,0.87
+Карачаево-Черкесская Республика,karachaevo cherkesskayaublika,Карачаево-Черкессия Республика,karachaevo cherkessiyaublika,fuzzy,0.947
+Хабаровский край,khabarovsk,Хабаровский край,khabarovsk,exact,1.0
+Кировская область,kirov,Кировская область,kirov,exact,1.0
+Костромская область,kostroma,Костромская область,kostroma,exact,1.0
+Краснодарский край,krasnodar,Краснодарский край,krasnodar,exact,1.0
+Красноярский край,krasnoyarsk,Красноярский край,krasnoyarsk,exact,1.0
+Курганская область,kurgan,Курганская область,kurgan,exact,1.0
+Курская область,kursk,Курская область,kursk,exact,1.0
+Ленинградская область,leningrad,Ленинградская область,leningrad,exact,1.0
+Липецкая область,lipetsk,Липецкая область,lipetsk,exact,1.0
+Московская область,moscow,Московская область,moscow,exact,1.0
+Нижегородская область,nizhny novgorod,Нижегородская область,nizhny novgorod,exact,1.0
+Новгородская область,novgorod,Новгородская область,novgorod,exact,1.0
+Новосибирская область,novosibirsk,Новосибирская область,novosibirsk,exact,1.0
+Омская область,omsk,Омская область,omsk,exact,1.0
+Оренбургская область,orenburg,Оренбургская область,orenburg,exact,1.0
+Орловская область,oryol,Орловская область,oryol,exact,1.0
+Пензенская область,penza,Пензенская область,penza,exact,1.0
+Пермский край,perm,Пермская край,permskaya,fuzzy,0.615
+Приморский край,primorye,Приморский край,primorye,exact,1.0
+Псковская область,pskov,Псковская область,pskov,exact,1.0
+Республика Адыгея,respublika adygeya,Республика Адыгея,respublika adygeya,exact,1.0
+Республика Алтай,respublika altay,Республика Алтай,respublika altay,exact,1.0
+Республика Башкортостан,respublika bashkortostan,Республика Башкортостан,respublika bashkortostan,exact,1.0
+Республика Бурятия,respublika buryatiya,Республика Бурятия,respublika buryatiya,exact,1.0
+Республика Дагестан,respublika dagestan,Республика Дагестан,respublika dagestan,exact,1.0
+Республика Ингушетия,respublika ingushetiya,Респу́блика Ингуше́тия,respúblika ingushétiya,fuzzy,0.957
+Республика Калмыкия,respublika kalmykiya,Республика Калмыкия,respublika kalmykiya,exact,1.0
+Республика Карелия,respublika kareliya,Республика Карелия,respublika kareliya,exact,1.0
+Республика Хакасия,respublika khakasiya,Республика Хакасия,respublika khakasiya,exact,1.0
+Республика Коми,respublika komi,Республика Коми,respublika komi,exact,1.0
+Республика Марий Эл,respublika mariy el,Республика Марий Эл,respublika mariy el,exact,1.0
+Республика Мордовия,respublika mordoviya,Республика Мордовия,respublika mordoviya,exact,1.0
+Республика Саха (Якутия),respublika sakha (yakutiya),Республика Хакасия,respublika khakasiya,fuzzy,0.766
+Республика Северная Осетия-Алания,respublika severnaya osetiya alaniya,Республика Северная Осетия-Алани,respublika severnaya osetiya alani,fuzzy,0.971
+Республика Татарстан,respublika tatarstan,Республика Татарстан,respublika tatarstan,exact,1.0
+Республика Тыва,respublika tyva,Республика Тыва,respublika tyva,exact,1.0
+Ростовская область,rostov,Ростовская область,rostov,exact,1.0
+Рязанская область,ryazan,Рязанская область,ryazan,exact,1.0
+Самарская область,samara,Самарская область,samara,exact,1.0
+Саратовская область,saratov,Саратовская область,saratov,exact,1.0
+Смоленская область,smolensk,Смоленская область,smolensk,exact,1.0
+Ставропольский край,stavropol,Ставропольский край,stavropol,exact,1.0
+Свердловская область,sverdlovsk,Свердловская область,sverdlovsk,exact,1.0
+Тамбовская область,tambov,Тамбовская область,tambov,exact,1.0
+Томская область,tomsk,Томская область,tomsk,exact,1.0
+Тульская область,tula,Тульская область,tula,exact,1.0
+Тверская область,tver,Тверская область,tver,exact,1.0
+Тюменская область,tyumen,Тюменская область,tyumen,exact,1.0
+Удмуртская Республика,udmurtskayaublika,Удмуртская Республика,udmurtskayaublika,exact,1.0
+Ульяновская область,ulyanovsk,Ульяновская область,ulyanovsk,exact,1.0
+Владимирская область,vladimir,Владимирская область,vladimir,exact,1.0
+Волгоградская область,volgograd,Волгоградская область,volgograd,exact,1.0
+Вологодская область,vologda,Вологодская область,vologda,exact,1.0
+Воронежская область,voronezh,Воронежская область,voronezh,exact,1.0
+Ярославская область,yaroslavl,Ярославская область,yaroslavl,exact,1.0
+Забайкальский край,zabaykalsky,Забайкальский край,zabaykalsky,exact,1.0

@@ -1,0 +1,2 @@
+﻿Model,Purpose,N,R2_within,R2_between,R2_overall,RMSE,MAE,CV_R2_mean,CV_R2_std,Main finding
+RF_without_lag,Prediction without historical production,124,,,-0.10001254358390588,0.4194229295533117,0.31230244501202514,0.2608287181647453,0.24675828415604437,Climate variables become central predictors

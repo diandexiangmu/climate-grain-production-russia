@@ -1,0 +1,38 @@
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:               ln_yield   R-squared:                        0.1852
+Estimator:                   PanelOLS   R-squared (Between):             -13.086
+No. Observations:                 521   R-squared (Within):               0.1389
+Date:                Sun, May 10 2026   R-squared (Overall):             -8.7620
+Time:                        15:45:17   Log-likelihood                    186.38
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      14.252
+Entities:                          68   P-value                           0.0000
+Avg Obs:                       7.6618   Distribution:                   F(7,439)
+Min Obs:                       1.0000                                           
+Max Obs:                       8.0000   F-statistic (robust):             18.079
+                                        P-value                           0.0000
+Time periods:                       8   Distribution:                   F(7,439)
+Avg Obs:                       65.125                                           
+Min Obs:                       63.000                                           
+Max Obs:                       68.000                                           
+                                                                                
+                                  Parameter Estimates                                  
+=======================================================================================
+                     Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+---------------------------------------------------------------------------------------
+const                   12.970     1.3506     9.6024     0.0000      10.315      15.624
+temp_grow_mean         -0.2583     0.0566    -4.5631     0.0000     -0.3696     -0.1471
+prec_grow_sum          -0.0003     0.0002    -1.5574     0.1201     -0.0008    8.91e-05
+spi_grow_mean           0.2538     0.0422     6.0174     0.0000      0.1709      0.3366
+spei_grow_mean         -0.1782     0.0416    -4.2827     0.0000     -0.2600     -0.0964
+ln_subsidy_main        -0.3490     0.0679    -5.1405     0.0000     -0.4825     -0.2156
+ln_subsidy_per_area     0.3259     0.0685     4.7582     0.0000      0.1913      0.4606
+ln_yield_lag1           0.1117     0.0802     1.3935     0.1642     -0.0459      0.2694
+=======================================================================================
+
+F-test for Poolability: 7.2493
+P-value: 0.0000
+Distribution: F(74,439)
+
+Included effects: Entity, Time

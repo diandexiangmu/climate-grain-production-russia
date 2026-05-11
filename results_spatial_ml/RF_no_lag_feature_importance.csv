@@ -1,0 +1,17 @@
+﻿feature,importance
+num__temp_grow_mean,0.37194462103233217
+num__prec_grow_sum,0.12397401838138068
+num__ln_subsidy_main,0.08301094318969368
+cat__agro_zone_black_soil,0.08049635051395751
+num__ln_subsidy_per_area,0.07646871406235985
+num__temp_grow_sq,0.06861491445930848
+num__spei_x_subsidy,0.06328374037034998
+num__temp_x_subsidy,0.03882007847802531
+num__spei_grow_mean,0.021779148095810223
+num__spei_sq,0.02008022474578327
+num__spi_sq,0.0175518501898731
+num__spi_x_subsidy,0.01682843316936062
+num__spi_grow_mean,0.009983274113525375
+cat__agro_zone_volga_dry,0.0038269095906636203
+cat__agro_zone_other,0.001724776242834962
+cat__agro_zone_risky_farming,0.00161200336474129
